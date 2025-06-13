@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Grading System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <h2>Report Preview</h2>
+            <div class="report-list">
+                <h3>Reports</h3>
+                <ul id="reportList"></ul>
+            </div>
+            <div class="report-viewer">
+                <iframe id="reportFrame" src="" width="100%" height="600px"></iframe>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <h2>Grade Report</h2>
+            <form id="gradingForm">
+                <div class="current-report">
+                    <h3 id="currentReportName">Select a report to grade</h3>
+                </div>
+                
+                <div class="grading-criteria">
+                    <div class="criteria-item">
+                        <label>Model Completeness:</label>
+                        <div class="star-rating" data-rating="0" data-field="modelCompleteness">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                            <span class="star" data-value="6">★</span>
+                            <span class="star" data-value="7">★</span>
+                            <span class="star" data-value="8">★</span>
+                            <span class="star" data-value="9">★</span>
+                            <span class="star" data-value="10">★</span>
+                        </div>
+                        <span class="rating-display">0/10</span>
+                    </div>
+                    
+                    <div class="criteria-item">
+                        <label>Simulation Results:</label>
+                        <div class="star-rating" data-rating="0" data-field="simulationResults">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                            <span class="star" data-value="6">★</span>
+                            <span class="star" data-value="7">★</span>
+                            <span class="star" data-value="8">★</span>
+                            <span class="star" data-value="9">★</span>
+                            <span class="star" data-value="10">★</span>
+                        </div>
+                        <span class="rating-display">0/10</span>
+                    </div>
+                    
+                    <div class="criteria-item">
+                        <label>Explanation (Clarity):</label>
+                        <div class="star-rating" data-rating="0" data-field="explanation">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                            <span class="star" data-value="6">★</span>
+                            <span class="star" data-value="7">★</span>
+                            <span class="star" data-value="8">★</span>
+                            <span class="star" data-value="9">★</span>
+                            <span class="star" data-value="10">★</span>
+                        </div>
+                        <span class="rating-display">0/10</span>
+                    </div>
+                    
+                    <div class="criteria-item">
+                        <label>Similarity to Expert Report:</label>
+                        <div class="star-rating" data-rating="0" data-field="expertSimilarity">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                            <span class="star" data-value="6">★</span>
+                            <span class="star" data-value="7">★</span>
+                            <span class="star" data-value="8">★</span>
+                            <span class="star" data-value="9">★</span>
+                            <span class="star" data-value="10">★</span>
+                        </div>
+                        <span class="rating-display">0/10</span>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit">Submit Grade</button>
+                    <button type="button" id="downloadCSV">Download All Grades (CSV)</button>
+                </div>
+            </form>
+            
+            <div class="graded-reports">
+                <h3>Graded Reports</h3>
+                <ul id="gradedList"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
