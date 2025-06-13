@@ -176,6 +176,64 @@ h3 {
     min-width: 35px;
 }
 
+.binary-question {
+    margin: 25px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #17a2b8;
+}
+
+.binary-question > label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 16px;
+}
+
+.binary-options {
+    display: flex;
+    gap: 20px;
+}
+
+.binary-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+.binary-option:hover {
+    border-color: #17a2b8;
+    background-color: #e8f4f5;
+}
+
+.binary-option input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+.binary-option input[type="radio"]:checked + .binary-label {
+    color: #17a2b8;
+    font-weight: 600;
+}
+
+.binary-option:has(input[type="radio"]:checked) {
+    border-color: #17a2b8;
+    background-color: #e8f4f5;
+}
+
+.binary-label {
+    font-size: 14px;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
 .form-actions {
     display: flex;
     gap: 10px;

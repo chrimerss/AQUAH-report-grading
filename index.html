@@ -28,7 +28,7 @@
                 
                 <div class="grading-criteria">
                     <div class="criteria-item">
-                        <label>Model Completeness:</label>
+                        <label>1. Model Completeness:</label>
                         <div class="star-rating" data-rating="0" data-field="modelCompleteness">
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
@@ -45,7 +45,7 @@
                     </div>
                     
                     <div class="criteria-item">
-                        <label>Simulation Results:</label>
+                        <label>2. Simulation Results:</label>
                         <div class="star-rating" data-rating="0" data-field="simulationResults">
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
@@ -62,8 +62,8 @@
                     </div>
                     
                     <div class="criteria-item">
-                        <label>Explanation (Clarity):</label>
-                        <div class="star-rating" data-rating="0" data-field="explanation">
+                        <label>3. Reasonableness:</label>
+                        <div class="star-rating" data-rating="0" data-field="reasonableness">
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
                             <span class="star" data-value="3">★</span>
@@ -79,8 +79,8 @@
                     </div>
                     
                     <div class="criteria-item">
-                        <label>Similarity to Expert Report:</label>
-                        <div class="star-rating" data-rating="0" data-field="expertSimilarity">
+                        <label>4. Clarity:</label>
+                        <div class="star-rating" data-rating="0" data-field="clarity">
                             <span class="star" data-value="1">★</span>
                             <span class="star" data-value="2">★</span>
                             <span class="star" data-value="3">★</span>
@@ -93,6 +93,20 @@
                             <span class="star" data-value="10">★</span>
                         </div>
                         <span class="rating-display">0/10</span>
+                    </div>
+                    
+                    <div class="binary-question">
+                        <label>Would you be interested in using this agent in your hydrologic work?</label>
+                        <div class="binary-options">
+                            <label class="binary-option">
+                                <input type="radio" name="wouldUse" value="yes" required>
+                                <span class="binary-label">Yes</span>
+                            </label>
+                            <label class="binary-option">
+                                <input type="radio" name="wouldUse" value="no" required>
+                                <span class="binary-label">No</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 

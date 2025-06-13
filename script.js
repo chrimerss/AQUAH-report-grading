@@ -85,6 +85,11 @@ class ReportGradingSystem {
             const display = rating.parentNode.querySelector('.rating-display');
             if (display) display.textContent = '0/10';
         });
+        
+        // Reset binary question
+        document.querySelectorAll('input[name="wouldUse"]').forEach(radio => {
+            radio.checked = false;
+        });
     }
 
     loadExistingGrade(reportName) {
@@ -92,8 +97,14 @@ class ReportGradingSystem {
         if (grade) {
             this.setStarRating('modelCompleteness', grade.modelCompleteness);
             this.setStarRating('simulationResults', grade.simulationResults);
-            this.setStarRating('explanation', grade.explanation);
-            this.setStarRating('expertSimilarity', grade.expertSimilarity);
+            this.setStarRating('reasonableness', grade.reasonableness || grade.expertSimilarity || 0);
+            this.setStarRating('clarity', grade.clarity || grade.explanation || 0);
+            
+            // Set binary question
+            if (grade.wouldUse) {
+                const radio = document.querySelector(`input[name="wouldUse"][value="${grade.wouldUse}"]`);
+                if (radio) radio.checked = true;
+            }
         }
     }
 
@@ -181,21 +192,26 @@ class ReportGradingSystem {
         // Get ratings from star rating components
         const modelCompleteness = parseInt(document.querySelector('[data-field="modelCompleteness"]').dataset.rating);
         const simulationResults = parseInt(document.querySelector('[data-field="simulationResults"]').dataset.rating);
-        const explanation = parseInt(document.querySelector('[data-field="explanation"]').dataset.rating);
-        const expertSimilarity = parseInt(document.querySelector('[data-field="expertSimilarity"]').dataset.rating);
+        const reasonableness = parseInt(document.querySelector('[data-field="reasonableness"]').dataset.rating);
+        const clarity = parseInt(document.querySelector('[data-field="clarity"]').dataset.rating);
+        
+        // Get binary question response
+        const wouldUseRadio = document.querySelector('input[name="wouldUse"]:checked');
+        const wouldUse = wouldUseRadio ? wouldUseRadio.value : null;
 
         const grade = {
             reportName: this.currentReport.name,
             modelCompleteness,
             simulationResults,
-            explanation,
-            expertSimilarity,
+            reasonableness,
+            clarity,
+            wouldUse,
             timestamp: new Date().toISOString()
         };
 
         // Validate all fields are filled (greater than 0)
-        if (!modelCompleteness || !simulationResults || !explanation || !expertSimilarity) {
-            alert('Please rate all criteria (click on stars to rate 1-10)');
+        if (!modelCompleteness || !simulationResults || !reasonableness || !clarity || !wouldUse) {
+            alert('Please rate all criteria (click on stars to rate 1-10) and answer the binary question');
             return;
         }
 
@@ -219,12 +235,12 @@ class ReportGradingSystem {
             const li = document.createElement('li');
             li.className = 'graded-item';
             
-            const avgScore = ((grade.modelCompleteness + grade.simulationResults + grade.explanation + grade.expertSimilarity) / 4).toFixed(1);
+            const avgScore = ((grade.modelCompleteness + grade.simulationResults + grade.reasonableness + grade.clarity) / 4).toFixed(1);
             
             li.innerHTML = `
                 <div class="graded-report-name">${reportName.replace('.pdf', '')}</div>
                 <div class="graded-scores">
-                    <small>MC: ${grade.modelCompleteness}, SR: ${grade.simulationResults}, EX: ${grade.explanation}, ES: ${grade.expertSimilarity}</small>
+                    <small>MC: ${grade.modelCompleteness}, SR: ${grade.simulationResults}, R: ${grade.reasonableness}, C: ${grade.clarity} | Use: ${grade.wouldUse}</small>
                     <div class="avg-score">Avg: ${avgScore}</div>
                 </div>
             `;
@@ -239,19 +255,20 @@ class ReportGradingSystem {
             return;
         }
 
-        const headers = ['Report Name', 'Model Completeness', 'Simulation Results', 'Explanation (Clarity)', 'Similarity to Expert Report', 'Average Score', 'Timestamp'];
+        const headers = ['Report Name', 'Model Completeness', 'Simulation Results', 'Reasonableness', 'Clarity', 'Would Use Agent', 'Average Score', 'Timestamp'];
         const csvData = [headers];
 
         Object.keys(this.grades).forEach(reportName => {
             const grade = this.grades[reportName];
-            const avgScore = ((grade.modelCompleteness + grade.simulationResults + grade.explanation + grade.expertSimilarity) / 4).toFixed(2);
+            const avgScore = ((grade.modelCompleteness + grade.simulationResults + grade.reasonableness + grade.clarity) / 4).toFixed(2);
             
             csvData.push([
                 reportName,
                 grade.modelCompleteness,
                 grade.simulationResults,
-                grade.explanation,
-                grade.expertSimilarity,
+                grade.reasonableness,
+                grade.clarity,
+                grade.wouldUse,
                 avgScore,
                 grade.timestamp
             ]);
