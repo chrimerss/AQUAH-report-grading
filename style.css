@@ -10,9 +10,48 @@ body {
     color: #333;
 }
 
+.main-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-header h1 {
+    font-size: 2.5em;
+    margin: 0 0 20px 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.description {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.description p {
+    margin: 0 0 15px 0;
+    opacity: 0.95;
+}
+
+.description p:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+    color: #ecf0f1;
+}
+
 .container {
     display: flex;
-    height: 100vh;
+    min-height: calc(100vh - 200px);
     gap: 20px;
     padding: 20px;
 }
@@ -310,9 +349,22 @@ button[type="submit"]:hover {
 }
 
 @media (max-width: 768px) {
+    .main-header {
+        padding: 20px 15px;
+    }
+    
+    .main-header h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    
+    .description {
+        font-size: 1em;
+    }
+    
     .container {
         flex-direction: column;
-        height: auto;
+        min-height: auto;
         gap: 10px;
         padding: 10px;
     }
